@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./BuildControls.module.scss";
-import BuildControl from "./BuildControl/BuildControl";
+import styles from './BuildControls.module.scss';
+import BuildControl from './BuildControl/BuildControl';
 
 interface Props {
   ingredientAdded: (type: string) => void;
@@ -9,13 +9,14 @@ interface Props {
   disabled: { [key: string]: number };
   price: number;
   purchasable: boolean;
+  ordered: () => void;
 }
 
 const controls = [
-  { label: "Salad", type: "salad" },
-  { label: "Bacon", type: "bacon" },
-  { label: "Cheese", type: "cheese" },
-  { label: "Meat", type: "meat" },
+  { label: 'Salad', type: 'salad' },
+  { label: 'Bacon', type: 'bacon' },
+  { label: 'Cheese', type: 'cheese' },
+  { label: 'Meat', type: 'meat' }
 ];
 
 const BuildControls = (props: Props) => {
@@ -33,7 +34,11 @@ const BuildControls = (props: Props) => {
           disabled={props.disabled[control.type]}
         />
       ))}
-      <button disabled={!props.purchasable} className={styles.OrderButton}>
+      <button
+        disabled={!props.purchasable}
+        className={styles.OrderButton}
+        onClick={props.ordered}
+      >
         ORDER NOW
       </button>
     </div>
